@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<title>Notation Formatter</title>
+	</head>
+  <script src="https://code.jquery.com/jquery.min.js"></script>
+  <style>
+    body {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    #textarea {
+    	height: 150px;
+    	width: 800px;
+    	margin-top: 10px;
+    	margin-bottom: 20px;
+      font-family: monospace;
+    }
+
+    #notation {
+      margin: 0 auto;
+      width: 800px;
+    }
+
+    #notation table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+    }
+
+    #notation table td {
+      text-align: center;
+    }
+
+    tr::after {
+      content: "\00a0";
+    }
+
+    .dot-above {
+      position: absolute;
+      margin-left: -1px;
+    }
+
+    .dot-below {
+      position: absolute;
+      margin-left: -1.5px;
+      margin-top: 5px;
+    }
+
+    .komal ~ .dot-below {
+      margin-top: 10px;
+    }
+
+    .komal {
+      position: absolute;
+      margin-left: -8.5px;
+      margin-top: 6px;
+    }
+
+    sup .komal {
+      margin-left: -7.5px;
+      margin-top: 4px;
+    }
+
+    sup .dot-below {
+      margin-top: 3px;
+    }
+
+    sup .komal ~ .dot-below {
+      margin-top: 5.5px;
+    }
+
+    .teevra {
+      position: absolute;
+      margin-left: -2.5px;
+    }
+
+    .english {
+      font-size: 0.85em;
+    }
+  </style>
+
+  <script>
+    $(document).ready(function() {
+      $('#textarea').keyup(function() {
+        notes = $('#textarea').val();
+        $('#notation table').text('');
+        notes.split('\n').forEach(line=> {
+            row = $('<tr></tr>');
+            line.split(' ').forEach(beat => {
+                if (beat == '|') {
+                    row.children().last().css('borderRight', 'solid black 1px')
+                    return;
+                }
+                beat = beat.replace(/([A-Za-z0-9]+)/g, '<span class="english">$1</span>')
+                           .replace(/\((.+?)\)/g, '<sup>$1</sup>')
+                           .replace(/_/g, '<span class="komal">_</span>')
+                           .replace(/\'/g, '<span class="teevra">\'</span>')
+                           .replace(/\*/g, '<span class="dot-above">&#x0307</span>')
+                           .replace(/\./g, '<span class="dot-below">&#x0323</span>')
+                cell = $('<td></td>');
+                cell.html(beat);
+                row.append(cell);
+            });
+            $('#notation table').append(row);
+        });
+      })
+      $('#textarea').keyup();
+    })
+  </script>
+	<body>
+		<textarea id="textarea">
+x    | 2    | O    | 3
+ਸ* - - ਧ | ਨ ਧ ਗ ਮ | ਨ ਧ ਗ ਮ | ਗ ਸ - ਸ
+ਧ. - - ਨ. | ਸ ਮ ਗ ਸ | ਗ ਪ ਮ ਗ | ਮ ਧ ਨ ਧ
+ਸ* - ਧ ਨ | ਸ*ਗ* ਮ* ਰ* ਸ* | ਨ ਧਨ ਸ* ਨ | ਧ ਮ ਗਮ ਧ
+ਮਧ ਨ ਧਨ ਸ* | ਨਸ* ਗ* ਮ*ਗ* ਰ*ਸ* | ਨਧ ਪਮ ਗਰ ਸ | ਗਮ ਧਨ ਸ* ਸ*
+ਸ* </textarea>
+		<div id="notation">
+      <table></table>
+    </div>
+	</body>
+</html>
