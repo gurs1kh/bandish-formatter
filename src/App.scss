@@ -1,0 +1,73 @@
+/* Markdown Playground Styles */
+.markdown-app-container {
+	max-width: 900px;
+	margin: 2rem auto;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+	padding: 2rem;
+	font-family: 'Inter', sans-serif;
+}
+
+.markdown-header {
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+.markdown-main {
+	display: flex;
+	gap: 2rem;
+}
+
+.markdown-editor, .markdown-preview {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.markdown-editor textarea {
+	width: 100%;
+	font-size: 1rem;
+	padding: 1rem;
+	border-radius: 8px;
+	border: 1px solid #ddd;
+	resize: vertical;
+	min-height: 300px;
+	margin-top: 0.5rem;
+}
+
+.markdown-preview-content {
+	background: #f9f9f9;
+	border-radius: 8px;
+	padding: 1rem;
+	min-height: 300px;
+	margin-top: 0.5rem;
+	overflow-x: auto;
+}
+
+.markdown-footer {
+	margin-top: 2rem;
+	text-align: center;
+}
+
+.markdown-footer input {
+	padding: 0.5rem;
+	border-radius: 6px;
+	border: 1px solid #ddd;
+	margin-bottom: 0.5rem;
+}
+
+.markdown-footer button {
+	padding: 0.5rem 1.5rem;
+	border-radius: 6px;
+	border: none;
+	background: #007bff;
+	color: #fff;
+	cursor: pointer;
+	font-size: 1rem;
+	margin-left: 0.5rem;
+}
+
+.markdown-footer button:hover {
+	background: #0056b3;
+}
