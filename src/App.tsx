@@ -1,6 +1,7 @@
 import './App.scss'
 import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export const App = () => {
   const [text, setText] = useState('')
@@ -18,7 +19,7 @@ export const App = () => {
         </div>
         <div className="markdown-preview">
           <div className="markdown-preview-content">
-            <ReactMarkdown>{text}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
           </div>
         </div>
       </div>
